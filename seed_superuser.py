@@ -20,7 +20,8 @@ if not User.objects.filter(role="admin").exists():
         last_name="User",
         role="admin",
         email="admin@admin.com",
-        password="admin123"
+        password="admin123",
+        sizeOfCompany="m"
     )
     print("Superuser created successfully.")
 else:
