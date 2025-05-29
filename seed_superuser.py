@@ -14,9 +14,11 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # Create superuser only if not exists
-if not User.objects.filter(username="admin").exists():
+if not User.objects.filter(role="admin").exists():
     User.objects.create_superuser(
-        username="admin",
+        first_name="Admin",
+        last_name="User",
+        role="admin",
         email="admin@admin.com",
         password="admin123"
     )
