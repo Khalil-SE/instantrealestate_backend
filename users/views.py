@@ -54,7 +54,7 @@ class UserSignupView(generics.CreateAPIView):
             # Generate a 6-digit email code
             code = str(random.randint(100000, 999999))
             # user.email_verification_code = code
-            user.email_verification_code = 123456
+            user.email_verification_code = "123456"
             # user.email_verified = False  # Redundant now but kept for clarity
             user.email_code_created_at = timezone.now()
             user.save()
