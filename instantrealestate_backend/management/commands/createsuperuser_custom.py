@@ -6,7 +6,7 @@ User = get_user_model()
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        username = os.getenv("DJANGO_SUPERUSER_USERNAME", "admin")
+        # username = os.getenv("DJANGO_SUPERUSER_USERNAME", "admin")
         email = os.getenv("DJANGO_SUPERUSER_EMAIL", "admin@example.com")
         password = os.getenv("DJANGO_SUPERUSER_PASSWORD", "securepassword")
 
