@@ -188,6 +188,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -201,6 +202,7 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://instantrealestatebackend-production.up.railway.app"
 ]
 
 
