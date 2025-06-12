@@ -278,6 +278,7 @@ class GoogleLoginView(APIView):
                     email_verified=True,
                     is_social=True,   # <-- Now it is handled properly by your create_user()
                 )
+                
 
             tokens = get_tokens_for_user(user)
             return Response(tokens)

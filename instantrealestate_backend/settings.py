@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 from decouple import config
 from datetime import timedelta
@@ -68,6 +68,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 
 # "django.middleware.common.CommonMiddleware", i have removed it from below array. i think it was doubled
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 
@@ -151,6 +152,14 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# Required for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Optional (but good)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -206,6 +215,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
+# Optional compression
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Lofty API settings
