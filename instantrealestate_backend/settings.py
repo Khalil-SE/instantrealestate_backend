@@ -239,3 +239,20 @@ LOFTY_TOKEN_URL = config('LOFTY_TOKEN_URL')
 LOFTY_USER_INFO_URL = config('LOFTY_USER_INFO_URL')
 LOFTY_LISTINGS_URL = config('LOFTY_LISTINGS_URL')
 
+
+# Celery settings
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', 'redis://localhost:6379/0')   # assuming Redis
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', 'redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
+# Celery Beat config (for periodic tasks)
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "sync-lofty-properties-every-10-min": {
+        "task": "property.tasks.sync.sync_lofty_all_users",
+        "schedule": crontab(minute="*/10"),
+    },
+}
