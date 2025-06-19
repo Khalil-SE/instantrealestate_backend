@@ -5,6 +5,9 @@ class SystemSettings(models.Model):
     """
     Model to store system-wide settings.
     """
+
+    
+
     admin_chatBot_key = models.TextField(blank=True, null=True)  # For admins only
     chatbot_create_user_url = models.URLField(blank=True, null=True)
     chatbot_create_account_url = models.URLField(blank=True, null=True)
@@ -18,7 +21,12 @@ class SystemSettings(models.Model):
     instabot_ai_prompt = models.TextField(null=True, blank=True)
 
     
-
+    email_from = models.EmailField(blank=True, null=True, help_text="Default from email address used in system emails.")
+    email_support = models.EmailField(blank=True, null=True, help_text="Support email address for users to contact.")
+    email_footer_text = models.TextField(blank=True, null=True, help_text="Text shown at the bottom of system emails.")
+    
+    
+    frontend_base_url = models.URLField(blank=True, null=True, help_text="Base URL of your frontend or domain used in links.")
 
     def save(self, *args, **kwargs):
         self.pk = 1  # ensure singleton

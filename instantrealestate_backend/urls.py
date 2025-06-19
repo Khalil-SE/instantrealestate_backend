@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/subscriptions/', include('subscriptions.urls')),
     path('api/shared/', include('shared.urls')),
     path('api/instabot/', include('instabot.urls')),
-    path('api/lofty/', include('lofty.urls')),
+    path('api/property/', include('property.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

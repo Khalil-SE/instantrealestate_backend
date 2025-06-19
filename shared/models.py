@@ -1,4 +1,4 @@
-# core/models/keyword.py
+# shared/models.py
 
 from django.db import models
 from django.utils import timezone

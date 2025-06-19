@@ -52,6 +52,8 @@ class InstaBotSerializer(serializers.ModelSerializer):
     )
     public_reply_template = PublicReplyTemplateSerializer(read_only=True)
 
+    email_recipients = serializers.ListField(child=serializers.EmailField(), required=False)
+
     class Meta:
         model = InstaBot
         fields = [
@@ -62,7 +64,7 @@ class InstaBotSerializer(serializers.ModelSerializer):
             'button2_text', 'button2_url',
             'button3_text', 'button3_url',
             'public_reply_template', 'public_reply_template_id',
-            'ai_post_description',
+            'ai_post_description','email_recipients',
             'comment_count', 'click_count', 'created_at',
         ]
         read_only_fields = ['id', 'comment_count', 'click_count', 'created_at']

@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'subscriptions',
     'shared',
     'instabot',
-    'lofty',
+    'property',
 ]
 
 # Making the Authorization system use the custom user model
@@ -189,8 +189,6 @@ BUNNY_API_KEY = config("BUNNY_API_KEY")
 BUNNY_STORAGE_HOSTNAME = config("BUNNY_STORAGE_HOSTNAME")
 BUNNY_PUBLIC_URL = config("BUNNY_PUBLIC_URL")
 
-# For development only
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Allowing REACT dev server to connect from different port
@@ -217,6 +215,19 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Optional compression
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# # For development only
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email Configuration
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+SUPPORT_EMAIL = config('SUPPORT_EMAIL',DEFAULT_FROM_EMAIL)
 
 
 # Lofty API settings

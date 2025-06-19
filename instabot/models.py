@@ -4,6 +4,8 @@ from django.db import models
 from django.db.models import SET_NULL
 from django.contrib.auth import get_user_model
 from shared.models import Keyword
+from django.db.models import JSONField
+
 
 User = get_user_model()
 
@@ -51,6 +53,7 @@ class InstaBot(models.Model):
     public_reply_template = models.ForeignKey(PublicReplyTemplate, null=True, blank=True, on_delete=models.SET_NULL)
     ai_post_description = models.TextField()
 
+    email_recipients = models.JSONField(default=list, blank=True)
     
 
     comment_count = models.PositiveIntegerField(default=0)
