@@ -1,3 +1,4 @@
+"property/tasks/sync.py"
 from celery import shared_task
 from users.models import CustomUser
 from property.services.sync_user_properties import sync_lofty_for_user  # You'll define this logic separately

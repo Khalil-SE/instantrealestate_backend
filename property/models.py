@@ -49,11 +49,14 @@ class LoftyProperty(models.Model):
     baths = models.FloatField(null=True, blank=True)
     sqft = models.FloatField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    image_url = models.URLField(null=True, blank=True)
+    image_url = models.URLField(max_length=2048, null=True, blank=True)
     raw_data = models.JSONField()  # Full Lofty payload
     fetched_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='lofty_listings')
     is_selected = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('listing_id', 'user')
 
     def __str__(self):
         return f"{self.listing_id} - {self.address}"
