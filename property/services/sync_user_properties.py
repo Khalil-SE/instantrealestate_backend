@@ -3,7 +3,7 @@ from celery import shared_task
 from django.utils.timezone import now
 from property.models import LoftyProperty
 from users.models import CustomUser
-from shared.utils import refresh_lofty_token
+from property.views.lofty_views import refresh_lofty_token
 import requests
 from django.conf import settings
 

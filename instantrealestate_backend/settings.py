@@ -250,6 +250,7 @@ CELERY_TIMEZONE = 'UTC'
 # Celery Beat config (for periodic tasks)
 from celery.schedules import crontab
 
+
 CELERY_BEAT_SCHEDULE = {
     "sync-lofty-properties-every-10-min": {
         "task": "property.tasks.sync.sync_lofty_all_users",
