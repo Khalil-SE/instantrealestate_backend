@@ -1,4 +1,9 @@
 <!-- For Celery -->
 <!-- In production or development, start the workers and beat like: -->
 celery -A instantrealestate_backend worker --loglevel=info
+<!-- OR -->
+celery -A instantrealestate_backend worker --loglevel=info --uid=nobody
+
+
+
 celery -A instantrealestate_backend beat --loglevel=info
