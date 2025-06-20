@@ -16,7 +16,7 @@ class PropertySerializer(serializers.ModelSerializer):
             'id', 'user', 'keyword', 'url', 'address', 'city', 'state', 'zip_code', 'price',
             'home_type', 'beds', 'baths', 'sqft', 'lot_size', 'description', 'ai_generated_description',
             'button1_text', 'button1_url', 'button2_text', 'button2_url',
-            'image_url', 'email_recipients', 'created_at'
+            'image_url', 'email_recipients', 'created_at', 'status'
         ]
         read_only_fields = ['id', 'created_at']
 
@@ -49,3 +49,5 @@ class LoftyPropertySerializer(serializers.ModelSerializer):
                   'price', 'beds', 'baths', 'sqft', 'description', 'image_url',
                   'fetched_at', 'is_selected']
         read_only_fields = ['id', 'fetched_at', 'is_selected']
+
+    

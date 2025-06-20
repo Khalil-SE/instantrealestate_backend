@@ -9,7 +9,7 @@ class Property(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     keyword = models.OneToOneField(Keyword, on_delete=models.SET_NULL, null=True, blank=True, related_name='property')
 
-    url = models.URLField()
+    url = models.URLField(max_length=2048, null=True, blank=True)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
@@ -28,10 +28,11 @@ class Property(models.Model):
     button2_text = models.CharField(max_length=50, null=True, blank=True)
     button2_url = models.URLField(blank=True)
 
-    image_url = models.URLField(null=True, blank=True)  # BunnyCDN image URL
+    image_url = models.URLField(max_length=2048, null=True, blank=True)  # BunnyCDN image URL
     email_recipients = models.JSONField(default=list, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=50, default="active")
 
     def __str__(self):
         return f"Property - {self.keyword.text if self.keyword else 'No Keyword'}"

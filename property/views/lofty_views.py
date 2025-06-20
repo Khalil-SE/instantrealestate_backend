@@ -6,6 +6,10 @@ from django.shortcuts import redirect
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework import generics
+from rest_framework import permissions
+from rest_framework import status
+
 from django.utils.timezone import now
 from users.models import CustomUser  # Adjust if your model is elsewhere
 import base64
@@ -595,3 +599,28 @@ def approve_lofty_property(request, pk):
     lp.is_selected = True
     lp.save()
     return Response(PropertySerializer(prop).data)
+
+
+
+
+# 
+class LoftyPropertyListView(generics.ListAPIView):
+    serializer_class = LoftyPropertySerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return LoftyProperty.objects.filter(user=self.request.user).order_by('-fetched_at')
+    
+
+# To mark the Lofty Property is Imported
+@api_view(['PATCH'])
+@permission_classes([IsAuthenticated])
+def mark_lofty_property_imported(request, listing_id):
+    try:
+        lofty_property = LoftyProperty.objects.get(listing_id=listing_id, user=request.user, is_selected=False)
+    except LoftyProperty.DoesNotExist:
+        return Response({"error": "Lofty property not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    lofty_property.is_selected = True
+    lofty_property.save()
+    return Response({"message": "Lofty property marked as selected "}, status=status.HTTP_200_OK)
