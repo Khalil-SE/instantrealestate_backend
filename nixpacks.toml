@@ -1,0 +1,5 @@
+[phases.setup]
+nixPkgs = ["python312Full", "gcc"]
+
+[start]
+cmd = "celery -A your_project worker --loglevel=info"
