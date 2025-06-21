@@ -1,5 +1,8 @@
 [phases.setup]
-nixPkgs = ["python312Full", "gcc"]
-
+nixPkgs = [
+  "python312.withPackages (ps: with ps; [ django celery gunicorn setuptools pip ])",
+  "gcc"
+]
+cmds = ["pip install -r requirements.txt"]
 [start]
-cmd = "celery -A your_project worker --loglevel=info"
+cmd = "celery -A instantrealestate_backend worker --loglevel=info"
