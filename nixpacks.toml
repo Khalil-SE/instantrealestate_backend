@@ -1,6 +1,0 @@
-[phases.setup]
-nixPkgs = [
-  "python312.withPackages (ps: with ps; [ django celery gunicorn setuptools pip ])",
-  "gcc"
-]
-
