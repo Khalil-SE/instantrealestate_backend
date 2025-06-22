@@ -3,6 +3,8 @@
 celery -A instantrealestate_backend worker --loglevel=info
 <!-- OR -->
 celery -A instantrealestate_backend worker --loglevel=info --uid=nobody
+<!-- OR -- final working for Railway -->
+celery -A instantrealestate_backend worker --loglevel=info --uid=nobody --concurrency=2 --without-mingle --without-gossip --without-heartbeat
 
 
 

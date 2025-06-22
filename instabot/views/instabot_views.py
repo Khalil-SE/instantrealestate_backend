@@ -34,17 +34,17 @@ class InstaBotListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         instabot = serializer.save(user=self.request.user)
-        try:
-            send_instabot_created_email(self.request.user, instabot.title)
-        except Exception as e:
-            print("Email sending failed:", e)  # Or use logger
-            # Send the code to the user's email
-            send_mail(
-                subject="Verify Your Email",
-                message=f"Youhave created instabot: { instabot.title}",
-                from_email=None,
-                recipient_list=[self.request.user.email],
-            )
+        # try:
+        #     send_instabot_created_email(self.request.user, instabot.title)
+        # except Exception as e:
+        #     print("Email sending failed:", e)  # Or use logger
+        #     # Send the code to the user's email
+        #     send_mail(
+        #         subject="Verify Your Email",
+        #         message=f"You have created instabot: { instabot.title}",
+        #         from_email=None,
+        #         recipient_list=[self.request.user.email],
+        #     )
 
 
 class InstaBotRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
