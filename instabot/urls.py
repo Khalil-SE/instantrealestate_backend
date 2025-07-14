@@ -12,11 +12,13 @@ from .views.instabot_views import (
 
 
 
+
 urlpatterns = [
     path("public-reply-templates/", PublicReplyTemplateListCreateView.as_view(), name="template-list"),
     path("public-reply-templates/<int:id>/", PublicReplyTemplateRetrieveUpdateDestroyView.as_view(), name="template-detail"),
 
-     path("instabots/", InstaBotListCreateView.as_view(), name="instabot-list-create"),
+    path("instabots/", InstaBotListCreateView.as_view(), name="instabot-list-create"),
     path("instabots/<int:id>/", InstaBotRetrieveUpdateDestroyView.as_view(), name="instabot-detail"),
+    
 ]
 

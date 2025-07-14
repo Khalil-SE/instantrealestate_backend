@@ -30,12 +30,12 @@ class CustomUserManager(BaseUserManager):
         is_social = extra_fields.pop("is_social", False)
         is_admin_created = extra_fields.pop("is_admin_created", False)
 
-        size = extra_fields.pop("sizeOfCompany", None)
+        # size = extra_fields.pop("sizeOfCompany", None)
         terms = extra_fields.pop("opt_terms", False)
 
         if not is_social and not is_admin_created:
-            if size not in dict(SIZE_CHOICES).keys():
-                raise ValueError("Invalid size of company")
+            # if size not in dict(SIZE_CHOICES).keys():
+            #     raise ValueError("Invalid size of company")
             if terms not in [True, False]:
                 raise ValueError("Invalid terms of service")
 
@@ -43,7 +43,7 @@ class CustomUserManager(BaseUserManager):
             email=email,
             first_name=first_name,
             last_name=last_name,
-            sizeOfCompany=size if not is_social else None,
+            # sizeOfCompany=size if not is_social else None,
             opt_terms=terms if not is_social else False,
             **extra_fields
         )
@@ -121,7 +121,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     #admin_chatBot_key = models.TextField(blank=True, null=True)  # For admins only
 
     # User-specific
-    sizeOfCompany = models.CharField(max_length=2, choices=SIZE_CHOICES, blank=True, null=True)
+    # sizeOfCompany = models.CharField(max_length=2, choices=SIZE_CHOICES, blank=True, null=True)
     opt_terms = models.BooleanField(default=False)
 
     # Django admin related

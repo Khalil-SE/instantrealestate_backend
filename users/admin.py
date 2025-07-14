@@ -12,7 +12,7 @@ class CustomUserAdmin(BaseUserAdmin):
         ('Personal Info', {'fields': ('first_name', 'last_name', 'phone_number', 'picture')}),
         ('Roles & Permissions', {'fields': ('role', 'status', 'email_verified', 'email_verification_code' , 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         ('API Keys', {'fields': ('api_key', 'chatBot_key', 'chatBot_user_id')}),
-        ('User Info', {'fields': ('sizeOfCompany', 'opt_terms')}),
+        ('User Info', {'fields': ( 'opt_terms',)}),
         ('Important Dates', {'fields': ('last_login',)}),
         ('Lofty Info', {'fields': ('lofty_user_id', 'lofty_access_token', 'lofty_refresh_token', 'lofty_token_expires_at')}),
     )

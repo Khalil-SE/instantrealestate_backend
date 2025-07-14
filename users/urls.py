@@ -2,11 +2,16 @@ from rest_framework.routers import DefaultRouter
 from django.urls import path
 from rest_framework_simplejwt.views import TokenRefreshView
 from .views import UserSignupView, VerifyEmailView, ResendVerificationCodeView, CustomTokenObtainPairView, PasswordResetRequestView, PasswordResetConfirmView, MeView, MeUpdateView, UserAdminViewSet, UserDataByKeyView, UploadUserPictureView, GoogleLoginView, FacebookLoginView, LogoutView
+from users.views import CheckEmailExistsView
+
+
 
 router = DefaultRouter()
 
 
 urlpatterns = [
+    path("check-email/", CheckEmailExistsView.as_view(), name="check-email"),
+
     path('signup/', UserSignupView.as_view(), name='user-signup'),
     path('verify-email/', VerifyEmailView.as_view(), name='verify-email'),
     path('resend-verification-code/', ResendVerificationCodeView.as_view(), name='resend-verification'),

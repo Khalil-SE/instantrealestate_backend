@@ -42,6 +42,25 @@ class StandardResultsSetPagination(PageNumberPagination):
     # max_page_size = 100
 
 
+
+class CheckEmailExistsView(APIView):
+    authentication_classes = []  # Public
+    permission_classes = []      # No auth required
+
+    def post(self, request):
+        email = request.data.get("email")
+        if not email:
+            return Response({"detail": "Email is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # print(f"Checking if email exists: {email}")
+        exists = User.objects.filter(email=email).exists()
+        # print(f"Email exists: {exists}")
+        return Response({"exists": exists}, status=status.HTTP_200_OK)
+    
+
+
+
+
 class UserSignupView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSignupSerializer

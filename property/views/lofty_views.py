@@ -466,7 +466,7 @@ def fetch_properties(request):
             "zip_code": item.get("listingZipcode", [None])[0],  # list to str
             "beds": item.get("beds"),
             "baths": item.get("baths"),
-            "sqft": item.get("sqft"),
+            "sqft": item.get("totalAvailableAcres", 0) / 43560, # convert acres to sqft
             "price": item.get("price"),
             "description": item.get("detailsDescribe"),
             "image_url": (item.get("pictureList") or [None])[0],  # first image or None

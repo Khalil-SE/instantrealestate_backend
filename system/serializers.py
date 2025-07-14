@@ -1,3 +1,4 @@
+# system/serializers.py
 from rest_framework import serializers
 from .models import SystemSettings
 
@@ -23,3 +24,8 @@ class SystemSettingsSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = SystemSettings
 #         fields = ['admin_chatBot_key']
+
+class ContactUsSerializer(serializers.Serializer):
+    subject = serializers.CharField(max_length=255)
+    message = serializers.CharField()
+

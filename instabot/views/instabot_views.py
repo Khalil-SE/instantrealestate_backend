@@ -1,4 +1,4 @@
-"views/instabot_views.py"
+# instabot/views/instabot_views.py
 from rest_framework import generics, permissions, filters
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 from django.core.mail import send_mail
@@ -7,6 +7,7 @@ from system.emails.handlers import send_instabot_created_email
 
 from instabot.models import InstaBot
 from instabot.serializers import InstaBotSerializer
+from instabot.services.openai_generator import generate_social_media_post
 
 
 class IsBotOwnerOrReadOnly(BasePermission):
@@ -34,6 +35,19 @@ class InstaBotListCreateView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         instabot = serializer.save(user=self.request.user)
+
+        # if instabot.ai_post_description and instabot.keyword:
+        #     ai_post = generate_social_media_post(instabot.ai_post_description, instabot.keyword.text)
+        #     print("Generated AI post:", ai_post)
+        #     # instabot.message = ai_post
+        #     # instabot.save()
+
+
+
+
+
+    # def perform_create(self, serializer):
+    #     instabot = serializer.save(user=self.request.user)
         # try:
         #     send_instabot_created_email(self.request.user, instabot.title)
         # except Exception as e:
@@ -57,6 +71,20 @@ class InstaBotRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return InstaBot.objects.filter(user=self.request.user)
+
+    def perform_update(self, serializer):
+        instabot = serializer.save()
+
+        # if instabot.ai_post_description and instabot.keyword:
+        #     ai_post = generate_social_media_post(
+        #         instabot.ai_post_description,
+        #         instabot.keyword.text
+        #     )
+        #     # instabot.message = ai_post
+        #     print("Generated AI post:", ai_post)
+        #     # instabot.save()
+
+
 
 
 # from rest_framework import generics, permissions

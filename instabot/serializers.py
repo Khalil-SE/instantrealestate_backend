@@ -1,3 +1,4 @@
+# instabot/serializers.py
 from rest_framework import serializers
 from instabot.models import PublicReplyTemplate, PublicReplyContent, InstaBot
 from shared.serializers import KeywordSerializer
